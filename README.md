@@ -1,11 +1,11 @@
-<div align="center">
-
-<!-- Titre ASCII Multicolore (SVG Néon / Pastel) -->
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=32&pause=1000&color=F5C2E7&center=true&vCenter=true&width=600&height=70&lines=%E2%96%88%E2%96%88%E2%A0%80%E2%96%88%E2%96%88%20%E2%96%88%E2%96%88%E2%96%88%E2%96%88%20%E2%96%88%E2%96%88%E2%96%88%E2%96%88%20%E2%96%88%E2%96%88%E2%A0%80%E2%96%88%E2%96%88%20%E2%96%88%E2%96%88%E2%96%88%E2%96%88%20%E2%96%88%E2%96%88%E2%96%88%E2%96%88%20%E2%96%88%E2%96%88%E2%96%88%E2%96%88%20%E2%96%88%E2%96%88%E2%96%88%E2%96%88;MOONCODEC;%E2%98%81%EF%B8%8F%20mooncodec%20%E2%98%81%EF%B8%8F" alt="MOONCODEC" />
-
-</div>
-
 ```text
+  __  __                  ____            _             
+ |  \/  | ___   ___  _ __/ ___|___   __| | ___  ___ 
+ | |\/| |/ _ \ / _ \| '_ \ |   / _ \ / _` |/ _ \/ __|
+ | |  | | (_) | (_) | | | | |__| (_) | (_| |  __/ (__ 
+ |_|  |_|\___/ \___/|_| |_|\____\___/ \__,_|\___|\___|
+
+
 klem@sys:~$ whoami
 > Software Developer & System Enthusiast
 
