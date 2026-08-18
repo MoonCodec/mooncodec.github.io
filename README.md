@@ -1,16 +1,11 @@
----
-layout: default
-title: klem@sys:~$
----
+<div align="center">
+
+<!-- Titre MOONCODEC en RGB / Dégradé animé -->
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=30&pause=1000&color=F5C2E7&center=true&vCenter=true&width=600&lines=%E2%96%88%E2%96%88%E2%A0%80%E2%96%88%E2%96%88%20%E2%96%88%E2%96%88%E2%96%88%E2%96%88%20%E2%96%88%E2%96%88%E2%96%88%E2%96%88%20%E2%96%88%E2%96%88%E2%A0%80%E2%96%88%E2%96%88%20%E2%96%88%E2%96%88%E2%96%88%E2%96%88%20%E2%96%88%E2%96%88%E2%96%88%E2%96%88%20%E2%96%88%E2%96%88%E2%96%88%E2%96%88%20%E2%96%88%E2%96%88%E2%96%88%E2%96%88;M+O+O+N+C+O+D+E+C;%E2%98%81%EF%B8%8F+klem+%40+mooncodec.github.io+%E2%98%81%EF%B8%8F" alt="MOONCODEC RGB" />
+
+</div>
 
 ```text
-  __  __                  ____            _             
- |  \/  | ___   ___  _ __/ ___|___   __| | ___  ___ 
- | |\/| |/ _ \ / _ \| '_ \ |   / _ \ / _` |/ _ \/ __|
- | |  | | (_) | (_) | | | | |__| (_) | (_| |  __/ (__ 
- |_|  |_|\___/ \___/|_| |_|\____\___/ \__,_|\___|\___|
-
-
 klem@sys:~$ whoami
 > Software Developer & System Enthusiast
 
