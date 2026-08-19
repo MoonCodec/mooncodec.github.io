@@ -1,355 +1,494 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MoonCodec · cozy dev</title>
-  <!-- Font Awesome pour les icônes -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-    /* ------- RESET & GLOBAL ------- */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      background: #0d1117;
-      color: #c9d1d9;
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      line-height: 1.6;
-      padding: 2rem 1rem;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .container {
-      max-width: 880px;
-      width: 100%;
-      background: #161b22;
-      border-radius: 24px;
-      padding: 2rem 2rem 1.5rem;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.7);
-      border: 1px solid #30363d;
-    }
-    a {
-      color: #58a6ff;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    hr {
-      border: 0;
-      height: 1px;
-      background: #30363d;
-      margin: 1.5rem 0;
-    }
-    .badge {
-      display: inline-block;
-      background: #21262d;
-      padding: 0.2rem 0.8rem;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      color: #8b949e;
-      border: 1px solid #30363d;
-    }
-    .tag {
-      display: inline-block;
-      background: #1f2937;
-      color: #9ca3af;
-      font-size: 0.7rem;
-      padding: 0.1rem 0.6rem;
-      border-radius: 12px;
-      margin-right: 0.3rem;
-      border: 1px solid #374151;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MoonCodec · cozy dev</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        /* ----- RESET & FOND D'ÉCRAN ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    /* ------- HEADER / HERO ------- */
-    .hero {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-    }
-    .avatar {
-      width: 90px;
-      height: 90px;
-      border-radius: 50%;
-      background: #1f2937;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 3rem;
-      color: #58a6ff;
-      border: 2px solid #30363d;
-      flex-shrink: 0;
-    }
-    .hero-text h1 {
-      font-size: 1.8rem;
-      font-weight: 600;
-      letter-spacing: -0.5px;
-      color: #f0f6fc;
-    }
-    .hero-text .pronouns {
-      color: #8b949e;
-      font-size: 0.9rem;
-      margin-left: 0.5rem;
-      font-weight: 400;
-    }
-    .hero-text .sub {
-      color: #8b949e;
-      font-size: 0.95rem;
-      margin-top: 0.2rem;
-    }
-    .hero-text .sub i {
-      margin-right: 0.3rem;
-      color: #58a6ff;
-    }
-    .hero-text .tagline {
-      margin-top: 0.3rem;
-      font-style: italic;
-      color: #b1bac4;
-      font-size: 1rem;
-      background: #0d1117;
-      display: inline-block;
-      padding: 0.2rem 1rem;
-      border-radius: 30px;
-      border: 1px solid #30363d;
-    }
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at 20% 30%, #1a1b2e, #0b0d17);
+            font-family: 'Segoe UI', -apple-system, system-ui, sans-serif;
+            padding: 1.5rem;
+        }
 
-    /* ------- SECTIONS ------- */
-    .section-title {
-      font-size: 1.2rem;
-      font-weight: 600;
-      margin-bottom: 0.8rem;
-      color: #f0f6fc;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-    .section-title i {
-      color: #58a6ff;
-      width: 1.4rem;
-    }
+        /* ----- LA FENÊTRE PC ----- */
+        .window {
+            width: 100%;
+            max-width: 820px;
+            background: #13161f;
+            border-radius: 12px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.04);
+            overflow: hidden;
+            backdrop-filter: blur(2px);
+            transition: transform 0.2s ease;
+        }
 
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.2rem;
-    }
-    @media (max-width: 600px) {
-      .grid-2 { grid-template-columns: 1fr; }
-      .hero { flex-direction: column; align-items: flex-start; }
-    }
+        /* --- Barre de titre (Windows style) --- */
+        .title-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.7rem 1rem 0.7rem 0.8rem;
+            background: #1e2433;
+            border-bottom: 1px solid #2c3344;
+            user-select: none;
+        }
 
-    .card {
-      background: #0d1117;
-      border-radius: 16px;
-      padding: 1rem 1.2rem;
-      border: 1px solid #21262d;
-    }
-    .card p {
-      margin: 0.2rem 0;
-    }
-    .card .label {
-      color: #8b949e;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-    .card .value {
-      font-weight: 500;
-    }
-    .card .value i {
-      margin-right: 0.4rem;
-      color: #58a6ff;
-      width: 1.2rem;
-    }
+        .window-controls {
+            display: flex;
+            gap: 0.5rem;
+        }
 
-    .vibe-block {
-      background: #0d1117;
-      border-radius: 16px;
-      padding: 1.2rem 1.5rem;
-      border-left: 4px solid #58a6ff;
-      margin: 1rem 0;
-    }
-    .vibe-block p {
-      margin: 0.3rem 0;
-    }
-    .vibe-block i {
-      color: #58a6ff;
-      margin-right: 0.5rem;
-      width: 1.2rem;
-    }
+        .window-controls span {
+            display: block;
+            width: 13px;
+            height: 13px;
+            border-radius: 50%;
+            transition: 0.2s;
+        }
 
-    .tools {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.8rem 1.5rem;
-      margin: 1rem 0 0.5rem;
-    }
-    .tools span {
-      background: #21262d;
-      padding: 0.2rem 1rem;
-      border-radius: 30px;
-      font-size: 0.85rem;
-      border: 1px solid #30363d;
-      color: #b1bac4;
-    }
-    .tools span i {
-      margin-right: 0.4rem;
-      color: #58a6ff;
-    }
+        .win-close {
+            background: #ff5f57;
+        }
+        .win-close:hover {
+            background: #ff7b73;
+        }
+        .win-minimize {
+            background: #febc2e;
+        }
+        .win-minimize:hover {
+            background: #ffd147;
+        }
+        .win-maximize {
+            background: #28c840;
+        }
+        .win-maximize:hover {
+            background: #4ce45e;
+        }
 
-    .footer {
-      margin-top: 2rem;
-      text-align: center;
-      color: #484f58;
-      font-size: 0.85rem;
-      border-top: 1px solid #21262d;
-      padding-top: 1.2rem;
-    }
-    .footer a {
-      color: #8b949e;
-      margin: 0 0.5rem;
-    }
-    .footer a:hover {
-      color: #58a6ff;
-    }
-  </style>
+        .title-text {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: #bcc3d4;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.2px;
+        }
+
+        .title-text i {
+            color: #7c8ba0;
+            font-size: 0.75rem;
+        }
+
+        .title-text .path {
+            color: #6a7a92;
+            font-family: 'JetBrains Mono', 'Consolas', monospace;
+            font-size: 0.75rem;
+        }
+
+        .title-actions {
+            display: flex;
+            gap: 0.8rem;
+            color: #4d5a70;
+            font-size: 0.8rem;
+        }
+        .title-actions i {
+            cursor: default;
+            transition: 0.2s;
+        }
+        .title-actions i:hover {
+            color: #9aabbf;
+        }
+
+        /* --- Corps de la fenêtre --- */
+        .window-body {
+            padding: 2rem 2.2rem 1.8rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+        }
+
+        /* --- LIGNE DE STATUT (en bas de la fenêtre) --- */
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 1.2rem;
+            background: #0e111b;
+            border-top: 1px solid #232a39;
+            color: #4f5d74;
+            font-size: 0.7rem;
+            font-family: 'JetBrains Mono', 'Consolas', monospace;
+            letter-spacing: 0.3px;
+        }
+
+        .status-bar .right {
+            display: flex;
+            gap: 1.2rem;
+        }
+        .status-bar i {
+            margin-right: 0.3rem;
+            color: #5d6e89;
+        }
+
+        /* --- HERO (Avatar + Titre) --- */
+        .hero {
+            display: flex;
+            align-items: center;
+            gap: 1.8rem;
+            flex-wrap: wrap;
+        }
+
+        .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, #262f40, #161c2a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.8rem;
+            color: #b7c9e8;
+            border: 2px solid #2f3a4e;
+            box-shadow: 0 0 20px rgba(88, 166, 255, 0.08);
+            flex-shrink: 0;
+        }
+
+        .hero-text h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #eef3fc;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-text .pronouns {
+            color: #7b8aa3;
+            font-size: 1rem;
+            font-weight: 400;
+            margin-left: 0.4rem;
+        }
+
+        .hero-text .sub {
+            color: #8899b3;
+            font-size: 0.95rem;
+            margin-top: 0.2rem;
+        }
+
+        .hero-text .sub i {
+            color: #6b7f9c;
+            width: 1.2rem;
+            margin-right: 0.2rem;
+        }
+
+        .hero-text .tagline {
+            display: inline-block;
+            margin-top: 0.4rem;
+            background: #1a212f;
+            padding: 0.2rem 1.4rem;
+            border-radius: 30px;
+            border: 1px solid #2e384b;
+            color: #bcc9de;
+            font-size: 0.9rem;
+            font-style: italic;
+            letter-spacing: 0.3px;
+        }
+
+        .hero-text .tagline i {
+            color: #6f8ab0;
+            margin-right: 0.4rem;
+        }
+
+        /* --- GRILLE DE CONTENU (2 colonnes) --- */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 600px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            .window-body {
+                padding: 1.5rem;
+            }
+        }
+
+        /* --- CARTES (type "bloc-notes" / profil) --- */
+        .card {
+            background: #0e121d;
+            border-radius: 14px;
+            padding: 1.2rem 1.4rem;
+            border: 1px solid #222b3d;
+            transition: border 0.2s;
+        }
+
+        .card:hover {
+            border-color: #34415b;
+        }
+
+        .card-title {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #5d6f8a;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-title i {
+            color: #4d6b94;
+            font-size: 0.8rem;
+        }
+
+        .card p {
+            margin: 0.35rem 0;
+            color: #c7d2e3;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .card p i {
+            color: #56739e;
+            width: 1.2rem;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .card .highlight {
+            color: #dce5f2;
+            font-weight: 500;
+        }
+
+        /* --- BLOCS "VIBE" (avec bordure gauche colorée) --- */
+        .vibe-block {
+            background: #0e121d;
+            border-radius: 14px;
+            padding: 1.2rem 1.6rem;
+            border-left: 4px solid #4b6a97;
+            border: 1px solid #222b3d;
+            border-left-width: 4px;
+            transition: 0.2s;
+        }
+
+        .vibe-block:hover {
+            border-color: #3b4d6b;
+            border-left-color: #6f8fc7;
+        }
+
+        .vibe-block p {
+            margin: 0.35rem 0;
+            color: #c7d2e3;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .vibe-block p i {
+            color: #56739e;
+            width: 1.4rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* --- TOOLS (badges interactifs) --- */
+        .tools-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem 1rem;
+            margin-top: 0.2rem;
+        }
+
+        .tools-group span {
+            background: #171f2e;
+            padding: 0.2rem 1.2rem;
+            border-radius: 30px;
+            border: 1px solid #2a3448;
+            color: #b3c2da;
+            font-size: 0.8rem;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .tools-group span i {
+            color: #5b7aa8;
+            font-size: 0.75rem;
+        }
+
+        .tools-group span:hover {
+            background: #1f2940;
+            border-color: #4a6085;
+            color: #e2ebf9;
+        }
+
+        /* --- FOOTER / MERCI --- */
+        .footer-thanks {
+            text-align: center;
+            color: #4b5a72;
+            font-size: 0.85rem;
+            border-top: 1px solid #1e2637;
+            padding-top: 1.2rem;
+            margin-top: 0.2rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-thanks a {
+            color: #6a7d9b;
+            transition: 0.2s;
+            margin: 0 0.2rem;
+        }
+
+        .footer-thanks a:hover {
+            color: #9bb1d4;
+        }
+
+        .footer-thanks i {
+            margin-right: 0.3rem;
+        }
+
+        /* --- SCROLLBAR PERSO (optionnel) --- */
+        ::-webkit-scrollbar {
+            width: 4px;
+            background: #0e121d;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2e3a52;
+            border-radius: 10px;
+        }
+    </style>
 </head>
 <body>
-<div class="container">
 
-  <!-- ========== HERO ========== -->
-  <div class="hero">
-    <div class="avatar">
-      <i class="fas fa-moon"></i>
+    <div class="window">
+
+        <!-- ====== BARRE DE TITRE ====== -->
+        <div class="title-bar">
+            <div class="window-controls">
+                <span class="win-close"></span>
+                <span class="win-minimize"></span>
+                <span class="win-maximize"></span>
+            </div>
+            <div class="title-text">
+                <i class="fas fa-terminal"></i>
+                <span>mooncode@cozy-dev</span>
+                <span class="path">~ / profile</span>
+            </div>
+            <div class="title-actions">
+                <i class="fas fa-expand"></i>
+                <i class="fas fa-times"></i>
+            </div>
+        </div>
+
+        <!-- ====== CORPS ====== -->
+        <div class="window-body">
+
+            <!-- HERO -->
+            <div class="hero">
+                <div class="avatar">
+                    <i class="fas fa-moon"></i>
+                </div>
+                <div class="hero-text">
+                    <h1>
+                        MoonCodec <span class="pronouns">· he/him</span>
+                    </h1>
+                    <div class="sub">
+                        <i class="fas fa-map-pin"></i> Belgie (West-Vlaanderen)
+                        <span style="margin:0 0.4rem;">·</span>
+                        <i class="fas fa-clock"></i> 13:06 (UTC +02:00)
+                    </div>
+                    <div class="tagline">
+                        <i class="fas fa-headphones"></i> sleepy dev • cozy code • lofi nights
+                    </div>
+                </div>
+            </div>
+
+            <!-- GRILLE : ABOUT + ROUTINE -->
+            <div class="grid-2">
+
+                <!-- ABOUT -->
+                <div class="card">
+                    <div class="card-title"><i class="fas fa-user-astronaut"></i> about me</div>
+                    <p><i class="fas fa-cat"></i> coding with a cat next to me</p>
+                    <p><i class="fas fa-moon"></i> late nights, soft lights</p>
+                    <p><i class="fas fa-coffee"></i> coffee & quiet focus</p>
+                    <p><i class="fas fa-seedling"></i> building things slowly & peacefully</p>
+                </div>
+
+                <!-- NIGHTLY ROUTINE -->
+                <div class="card">
+                    <div class="card-title"><i class="fas fa-bed"></i> nightly routine</div>
+                    <p><i class="fas fa-dimming"></i> dim lights & calm room</p>
+                    <p><i class="fas fa-cat"></i> cat sleeping nearby</p>
+                    <p><i class="fas fa-music"></i> lofi playing softly</p>
+                    <p><i class="fas fa-code"></i> coding slowly</p>
+                </div>
+
+            </div>
+
+            <!-- CURRENT VIBE (pleine largeur) -->
+            <div class="vibe-block" style="border-left-color: #a78bfa;">
+                <p style="font-weight: 500; color: #dce5f2; margin-bottom: 0.2rem;">
+                    <i class="fas fa-volume-up" style="color: #a78bfa;"></i> current vibe
+                </p>
+                <p><i class="fas fa-headphones"></i> lofi hip hop / night loops</p>
+                <p><i class="fas fa-window-maximize"></i> window open, calm night air</p>
+                <p><i class="fas fa-lightbulb"></i> warm light / quiet room</p>
+            </div>
+
+            <!-- TOOLS -->
+            <div>
+                <div style="font-size:0.7rem; text-transform:uppercase; letter-spacing:0.8px; color:#5d6f8a; margin-bottom:0.5rem; display:flex; align-items:center; gap:0.5rem;">
+                    <i class="fas fa-tools" style="color:#4d6b94;"></i> tools
+                </div>
+                <div class="tools-group">
+                    <span><i class="fas fa-code"></i> take it easy</span>
+                    <span><i class="fas fa-heart"></i> code softly</span>
+                    <span><i class="fas fa-bed"></i> stay cozy</span>
+                </div>
+            </div>
+
+            <!-- FOOTER MERCI -->
+            <div class="footer-thanks">
+                <span><i class="fas fa-mug-saucer"></i> thanks for stopping by</span>
+                <span>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-discord"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </span>
+            </div>
+
+        </div>
+
+        <!-- ====== BARRE DE STATUT (bas de fenêtre) ====== -->
+        <div class="status-bar">
+            <span><i class="fas fa-circle" style="color:#28c840; font-size:0.5rem;"></i> cozy mode</span>
+            <div class="right">
+                <span><i class="fas fa-code"></i> UTF-8</span>
+                <span><i class="fas fa-moon"></i> 13:06</span>
+            </div>
+        </div>
+
     </div>
-    <div class="hero-text">
-      <h1>
-        MoonCodec <span class="pronouns">· he/him</span>
-      </h1>
-      <div class="sub">
-        <i class="fas fa-map-pin"></i> Belgie (West-Vlaanderen) · 
-        <i class="fas fa-clock"></i> 13:06 (UTC +02:00)
-      </div>
-      <div class="tagline">
-        <i class="fas fa-headphones"></i> sleepy dev • cozy code • lofi nights
-      </div>
-    </div>
-  </div>
 
-  <!-- ========== PROFIL (inspiré de ton Discord) ========== -->
-  <div class="section-title">
-    <i class="fas fa-id-card"></i> Profil
-  </div>
-  <div class="grid-2">
-    <div class="card">
-      <div class="label"><i class="fas fa-server"></i> Xénaria</div>
-      <div class="value">Server: Americas / Europe</div>
-      <div style="margin-top:0.5rem;">
-        <span class="badge"><i class="fas fa-shield-alt"></i> Authority Level 24</span>
-        <span class="badge"><i class="fas fa-calendar-day"></i> 16</span>
-        <span class="badge"><i class="fas fa-calendar-alt"></i> 16</span>
-      </div>
-      <div style="margin-top:0.3rem; font-size:0.9rem;">
-        <i class="fas fa-gem"></i> Awakening Day: 2026-03-22
-      </div>
-      <div style="margin-top:0.3rem; font-size:0.9rem;">
-        <i class="fas fa-map"></i> Valley IV · Regionals
-      </div>
-      <div style="margin-top:0.3rem; font-size:0.9rem;">
-        <i class="fas fa-city"></i> Wuling Regional Development Level
-      </div>
-    </div>
-    <div class="card">
-      <div class="label"><i class="fas fa-gamepad"></i> Jeu favori</div>
-      <div class="value" style="font-size:1.1rem; font-weight:600; color:#f0f6fc;">
-        <i class="fas fa-cube"></i> Minecraft
-      </div>
-      <p style="color:#b1bac4; font-size:0.9rem; margin:0.3rem 0;">
-        “Un monde où la liberté n’a pas de limites, où créer et explorer devient une façon de se retrouver, dans une paix simple et sincère.”
-      </p>
-      <div style="margin-top:0.3rem;">
-        <span class="tag"><i class="fas fa-fire"></i> Mon obsession</span>
-        <span class="tag"><i class="fas fa-play"></i> Envie de jouer</span>
-      </div>
-      <div style="margin-top:0.4rem;">
-        <span class="tag"><i class="fas fa-tag"></i> sandbox</span>
-        <span class="tag"><i class="fas fa-tag"></i> créativité</span>
-        <span class="tag"><i class="fas fa-tag"></i> calme</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Jeux du moment -->
-  <div style="margin: 0.5rem 0 1rem 0;">
-    <span class="badge" style="background:#1f2937;"><i class="fas fa-gamepad"></i> Jeux du moment</span>
-    <span class="badge">Arknights Endfield</span>
-    <span class="badge">Xenaria</span>
-  </div>
-
-  <hr>
-
-  <!-- ========== ABOUT (inspiré de ton README GitHub) ========== -->
-  <div class="section-title">
-    <i class="fas fa-user-astronaut"></i> about me
-  </div>
-  <div class="vibe-block">
-    <p><i class="fas fa-cat"></i> coding with a cat next to me</p>
-    <p><i class="fas fa-moon"></i> late nights, soft lights</p>
-    <p><i class="fas fa-coffee"></i> coffee & quiet focus</p>
-    <p><i class="fas fa-seedling"></i> building things slowly & peacefully</p>
-  </div>
-
-  <!-- ========== NIGHTLY ROUTINE ========== -->
-  <div class="section-title">
-    <i class="fas fa-headphones-alt"></i> nightly routine
-  </div>
-  <div class="vibe-block" style="border-left-color:#a78bfa;">
-    <p><i class="fas fa-dimming"></i> dim lights & calm room</p>
-    <p><i class="fas fa-cat"></i> cat sleeping nearby</p>
-    <p><i class="fas fa-music"></i> lofi playing softly</p>
-    <p><i class="fas fa-code"></i> coding slowly</p>
-  </div>
-
-  <!-- ========== CURRENT VIBE ========== -->
-  <div class="section-title">
-    <i class="fas fa-volume-up"></i> current vibe
-  </div>
-  <div class="vibe-block" style="border-left-color:#f472b6;">
-    <p><i class="fas fa-headphones"></i> lofi hip hop / night loops</p>
-    <p><i class="fas fa-window-maximize"></i> window open, calm night air</p>
-    <p><i class="fas fa-lightbulb"></i> warm light / quiet room</p>
-  </div>
-
-  <!-- ========== TOOLS ========== -->
-  <div class="section-title">
-    <i class="fas fa-tools"></i> tools
-  </div>
-  <div class="tools">
-    <span><i class="fas fa-code"></i> take it easy</span>
-    <span><i class="fas fa-heart"></i> code softly</span>
-    <span><i class="fas fa-bed"></i> stay cozy</span>
-  </div>
-
-  <!-- ========== FOOTER ========== -->
-  <div class="footer">
-    <p>
-      <i class="fas fa-mug-saucer"></i> thanks for stopping by &nbsp;·&nbsp;
-      <a href="#"><i class="fab fa-github"></i></a>
-      <a href="#"><i class="fab fa-discord"></i></a>
-      <a href="#"><i class="fab fa-twitter"></i></a>
-    </p>
-    <p style="margin-top:0.3rem; font-size:0.7rem; color:#3d444d;">
-      mooncode / README.md · sleepy dev
-    </p>
-  </div>
-
-</div>
 </body>
 </html>
